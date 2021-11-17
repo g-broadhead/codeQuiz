@@ -17,34 +17,27 @@
   <title>Code Quiz</title>
 </head>
 <body>
-<!-- Header -->
-  <header class="headerStyle">
-    <h1>Code Quiz</h1>
-    <h5>Lorem Ipsum sdfgsadfgsadg sadfggasdgasgasg asfdgasgagadftg agasfdgsagasgasg asgdfsagsagagsdfg</h5>
-  </header>
-<div class="container">
-  <button type="button" id="startQuiz" class="btn btn-primary">Start</button>
-</div>
-
-<!-- Buttons -->
-    <div class="container" id="questions">
-      
+  <!-- Quiz Container -->
+  <div class="container">
+    <div id="questionsContainer" class="hide">
+      <!-- Header -->
+      <div id="question" class="headerStyle">Question</div>
+      <!-- Answer Buttons -->
+      <div id="answerBtns" class="btn-grid">
+        <button class="btn btnStyle">AnswerA</button>
+        <button class="btn btnStyle">AnswerB</button>
+        <button class="btn btnStyle">AnswerC</button>
+        <button class="btn btnStyle">AnswerD</button>
+      </div>
     </div>
-
-    
+    <!-- Control Button container,start, highscore, reset -->
+    <div class="controlBtns">
+      <button id="startBtn" class="btn">Start</button>
+      <button class="btn btnStyle">View Highscores</button>
+      <button id="resetBtn"class="btn btnStyle hide">Reset Quiz</button>
+    </div>
+  </div>
   
-
-
-
-
-
-    <!-- <button type="button" id="button1" class="btn btn-primary">Primary</button>
-          <button type="button" id="button2" class="btn btn-primary">Primary</button>
-          <button type="button" id="button3"class="btn btn-primary">Primary</button>
-          <button type="button" id="button4"class="btn btn-primary">Primary</button>
-          <button type="button" id="highScores" class="btn btn-primary">Primary</button>
-          <button type="button" id="resetQuiz" class="btn btn-primary">Primary</button> -->
-
 
 
 <!--JS Bundle  Bootstrap-->

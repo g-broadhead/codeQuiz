@@ -66,3 +66,8 @@ body {
 .hide {
   display: none;
 }
+
+.textStyle {
+  font-size: 25px;
+  font-weight: 500;
+}

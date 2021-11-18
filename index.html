@@ -17,13 +17,16 @@
   <title>Code Quiz</title>
 </head>
 <body>
-  <!-- Quiz Container -->
+<!-- Quiz Container -->
   <div class="container">
-    <div class="textStyle">Score:</div>
+<!-- Score tracker -->
+    <div class="textStyle" id="score">Score:</div>
+    <div class="textStyle" id="time">Time:</div>
+
     <div id="questionsContainer" class="hide">
-      <!-- Header -->
+<!-- Header -->
       <div id="question" class="headerStyle">Question</div>
-      <!-- Answer Buttons -->
+<!-- Answer Buttons -->
       <div id="answerBtns" class="btn-grid">
         <button class="btn btnStyle">AnswerA</button>
         <button class="btn btnStyle">AnswerB</button>
@@ -31,7 +34,7 @@
         <button class="btn btnStyle">AnswerD</button>
       </div>
     </div>
-    <!-- Control Button container,start, highscore, reset -->
+<!-- Control Button container,start, highscore, reset -->
     <div class="controlBtns">
       <button id="startBtn" class="btn">Start</button>
       <button class="btn btnStyle">View Highscores</button>

@@ -6,14 +6,11 @@ const questionElem = document.getElementById('question')
 const answerBtnElem = document.getElementById('answerBtns')
 const submitScore = document.getElementById('submitScore')
 
-// Stores highscores locally
-let scores = JSON.parse(localStorage.getItem('scores')) || []
-
 // Question Array Index variable
 let currentQuestionIndex = 0
 
 // Timer variables
-let seconds = 60
+let seconds = 61
 const timer = document.getElementById('time')
 
 //Score variables
@@ -84,6 +81,7 @@ function startQuiz() {
 function incrementSeconds() {
   if (seconds <= 0 || currentQuestionIndex === quizQuestions.length) {
     clearInterval(startTime)
+    seconds = 0
     endQuiz()
   } else {
     seconds -= 1
@@ -110,7 +108,7 @@ function showQuestion(questionIndex) {
 // Function for getting the next question
 function nextQuestion() {
   resetInfo('')
-  if (currentQuestionIndex === quizQuestions.length){
+  if (currentQuestionIndex === quizQuestions.length || seconds <= 0){
     questionElem.innerHTML=""
     endQuiz()
   } else {
@@ -120,12 +118,18 @@ function nextQuestion() {
 
 // End Quiz function for all ending outcomes
 function endQuiz() {
-  if (seconds <= 0 || currentQuestionIndex === quizQuestions.length) {
+  if (seconds <= 0 ) {
     questionElem.classList.add('hide')
     answerBtnElem.classList.add('hide')
     submitScore.classList.remove('hide')
+    seconds = 0
+    timer.innerText = "Time: " + seconds
+  } else if (currentQuestionIndex === quizQuestions.length){
+    questionElem.classList.add('hide')
+    answerBtnElem.classList.add('hide')
+    submitScore.classList.remove('hide')
+    
   }
-
 }
 
 // Function for resetting info to default states
@@ -165,6 +169,9 @@ function clearAnswerStatus(element) {
   element.classList.remove('correct')
   element.classList.remove('incorrect')
 }
+
+// Stores highscores locally
+let scores = JSON.parse(localStorage.getItem('scores')) || []
 
 // Local Storage
 document.getElementById('submit').addEventListener('click', event => {

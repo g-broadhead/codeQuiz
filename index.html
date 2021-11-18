@@ -13,20 +13,19 @@
   <link rel ="stylesheet" href ="./assets/style.css">
   <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxeXEosoWwJzDlME6Sg6HMiaMWWk901wLdcA&usqp=CAU">
 
-
   <title>Code Quiz</title>
 </head>
 <body>
+
 <!-- Quiz Container -->
-  <div class="container">
+  <div class="container textStyle">
 
 <!-- Score tracker -->
     <div class="textStyle" id="score">Score:</div>
     <div class="textStyle" id="time">Time:</div>
-    <div id="questionsContainer" class="hide">
-
-<!-- Header -->
-      <div id="question" class="headerStyle">Question</div>
+    <div id="questionsContainer" class="hide">     
+      <div id="question" class="headerStyle">
+      </div>
 
 <!-- Answer Buttons -->
       <div id="answerBtns" class="btn-grid">
@@ -39,7 +38,6 @@
 
 <!-- Highscore submission form -->
     <div id="submitScore" class="textStyle hide">
-
       <form class="row g-3">
         <div class="col-auto">
           <label for="userName" class="visually-hidden">Ignore Me I am Blank</label>
@@ -62,14 +60,15 @@
 
 <!-- Control Button container,start, highscore, reset -->
     <div class="controlBtns">
-      <button id="startBtn" class="btn">Start</button>
-<!-- <button id="resetBtn"class="btn btnStyle hide">Reset Quiz</button> -->
+      <button id="startBtn" class="btn">Start JavaScript Quiz</button>
+      <!-- <button id="viewHighscoreBtn"class="btn btnStyle">View Highscores</button> -->
     </div>
   </div>
 
-<!--JS Bundle  Bootstrap-->
+<!--JS Bundle Bootstrap-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 <!-- JS link to code -->
   <script src="./assets/script.js"></script>
 </body>

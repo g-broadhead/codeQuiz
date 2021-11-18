@@ -13,7 +13,7 @@ let scores = JSON.parse(localStorage.getItem('scores')) || []
 let currentQuestionIndex = 0
 
 // Timer variables
-let seconds = 21
+let seconds = 60
 const timer = document.getElementById('time')
 
 //Score variables
@@ -29,44 +29,45 @@ function addPoints(){
 // Quiz Questions and Answers array
 const quizQuestions = [
   {
-    question: "What is 2 +2?",
+    question: "Why do JavaScript and Java have similar names?",
     answers: [
-      { text: '4' },
-      { text: '22' },
-      { text: '22' },
-      { text: '22' }
+      { text: 'JavaScript is a stripped-down version of Java' },
+      { text: `JavaScript's syntax is loosely based on Java's` },
+      { text: 'They both originated on the island of Java' },
+      { text: 'None of the above' }
     ],
-    correct: '4'
+    correct: `JavaScript's syntax is loosely based on Java's`
   },
   {
-    question: "What is 10 + 2?",
+    question: "When a user views a page containing a JavaScript program, which machine actually executes the script?",
     answers: [
-      { text: '5' },
-      { text: '252' },
-      { text: '22' },
-      { text: '12' }
+      {
+        text: `The User's machine running a Web browser` },
+      { text: 'The Web server' },
+      { text: `A central machine deep within Netscape's corporate offices` },
+      { text: 'None of the Above' }
     ],
-    correct: '12'
+    correct: `The User's machine running a Web browser`
   },
   {
-    question: "What is 22 +2 ?",
+    question: "______ JavaScript is also called client-side JavaScript.",
     answers: [
-      { text: '4' },
-      { text: '22' },
-      { text: '24' },
-      { text: '2552' }
+      { text: 'Microsoft' },
+      { text: 'Navigator' },
+      { text: 'LiveWire' },
+      { text: 'Native' }
     ],
-    correct: '24'
+    correct: 'Navigator'
   },
   {
-    question: "What is 222 + 22?",
+    question: "Which of the following can't be done with client-side JavaScript?",
     answers: [
-      { text: '2' },
-      { text: '244' },
-      { text: '22' },
-      { text: '22' }
+      { text: 'Validating a form' },
+      { text: `Sending a form's contents by email` },
+      { text: `Storing the form's contents to a database file on the server` },
+      { text: 'None of the above' }
     ],
-    correct: '244'
+    correct: `Storing the form's contents to a database file on the server`
   },
 ]
 
@@ -74,7 +75,6 @@ const quizQuestions = [
 start.addEventListener('click', startQuiz)
 function startQuiz() {
   start.classList.add('hide')
-  // reset.classList.remove('hide')
   questionsContainElem.classList.remove('hide')
   startTime = setInterval(incrementSeconds, 1000)
   nextQuestion()
@@ -84,6 +84,7 @@ function startQuiz() {
 function incrementSeconds() {
   if (seconds <= 0 || currentQuestionIndex === quizQuestions.length) {
     clearInterval(startTime)
+    endQuiz()
   } else {
     seconds -= 1
     timer.innerText = "Time: " + seconds
@@ -120,6 +121,8 @@ function nextQuestion() {
 // End Quiz function for all ending outcomes
 function endQuiz() {
   if (seconds <= 0 || currentQuestionIndex === quizQuestions.length) {
+    questionElem.classList.add('hide')
+    answerBtnElem.classList.add('hide')
     submitScore.classList.remove('hide')
   }
 
@@ -141,7 +144,7 @@ function selectAnswer(e) {
     currentQuestionIndex++
     nextQuestion()
   } else if (userChoice != quizQuestions[currentQuestionIndex].correct) {
-      seconds -= 5
+      seconds -= 20
       currentQuestionIndex++
       nextQuestion()
   }

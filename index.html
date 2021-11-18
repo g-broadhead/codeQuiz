@@ -19,13 +19,15 @@
 <body>
 <!-- Quiz Container -->
   <div class="container">
+
 <!-- Score tracker -->
     <div class="textStyle" id="score">Score:</div>
     <div class="textStyle" id="time">Time:</div>
-
     <div id="questionsContainer" class="hide">
+
 <!-- Header -->
       <div id="question" class="headerStyle">Question</div>
+
 <!-- Answer Buttons -->
       <div id="answerBtns" class="btn-grid">
         <button class="btn btnStyle">AnswerA</button>
@@ -34,15 +36,36 @@
         <button class="btn btnStyle">AnswerD</button>
       </div>
     </div>
+
+<!-- Highscore submission form -->
+    <div id="submitScore" class="textStyle hide">
+
+      <form class="row g-3">
+        <div class="col-auto">
+          <label for="userName" class="visually-hidden">Ignore Me I am Blank</label>
+          <input type="text" readonly class="form-control-plaintext" id="userName" value="">
+        </div>
+        <div class="col-auto">
+          <label for="name" class="visually-hidden">name</label>
+          <input type="text" class="form-control" id="name" placeholder="User Name">
+        </div>
+        <div class="col-auto">
+          <button type="submit" id="submit" class="btn btn-primary mb-3">Submit Score</button>
+        </div>
+      </form>
+    </div>
+
+<!-- Display Scores -->
+    <div id="displayScores" class="hide">
+      <h5>Your Scores</h5>
+    </div>
+
 <!-- Control Button container,start, highscore, reset -->
     <div class="controlBtns">
       <button id="startBtn" class="btn">Start</button>
-      <button class="btn btnStyle">View Highscores</button>
-      <button id="resetBtn"class="btn btnStyle hide">Reset Quiz</button>
+<!-- <button id="resetBtn"class="btn btnStyle hide">Reset Quiz</button> -->
     </div>
   </div>
-  
-
 
 <!--JS Bundle  Bootstrap-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

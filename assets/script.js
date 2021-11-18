@@ -4,11 +4,27 @@ const reset = document.getElementById('resetBtn')
 const questionsContainElem = document.getElementById('questionsContainer')
 const questionElem = document.getElementById('question')
 const answerBtnElem = document.getElementById('answerBtns')
+const submitScore = document.getElementById('submitScore')
 
+// Stores highscores locally
+let scores = JSON.parse(localStorage.getItem('scores')) || []
+
+// Question Array Index variable
 let currentQuestionIndex = 0
 
+// Timer variables
 let seconds = 21
-let timer = document.getElementById('time')
+const timer = document.getElementById('time')
+
+//Score variables
+let points = 0
+const score = document.getElementById('score')
+
+// Score increase function
+function addPoints(){
+  points += 10
+  score.append(points)
+}
 
 // Quiz Questions and Answers array
 const quizQuestions = [
@@ -54,25 +70,23 @@ const quizQuestions = [
   },
 ]
 
-
 // Starts the Quiz and cycles through the Q and A
 start.addEventListener('click', startQuiz)
 function startQuiz() {
   start.classList.add('hide')
-  reset.classList.remove('hide')
+  // reset.classList.remove('hide')
   questionsContainElem.classList.remove('hide')
   startTime = setInterval(incrementSeconds, 1000)
   nextQuestion()
 }
 
-// Timer count
+// Time counter
 function incrementSeconds() {
-  if (seconds > 0) {
+  if (seconds <= 0 || currentQuestionIndex === quizQuestions.length) {
+    clearInterval(startTime)
+  } else {
     seconds -= 1
     timer.innerText = "Time: " + seconds
-  } else {
-    clearInterval(startTime)
-    endQuiz()
   }
 }
 
@@ -97,16 +111,16 @@ function nextQuestion() {
   resetInfo('')
   if (currentQuestionIndex === quizQuestions.length){
     questionElem.innerHTML=""
-    // Replace consolelog with end function
     endQuiz()
   } else {
     showQuestion(currentQuestionIndex)
   }
 }
 
+// End Quiz function for all ending outcomes
 function endQuiz() {
-  if (seconds <= 0) {
-    console.log("Game Over")
+  if (seconds <= 0 || currentQuestionIndex === quizQuestions.length) {
+    submitScore.classList.remove('hide')
   }
 
 }
@@ -118,12 +132,12 @@ function resetInfo() {
   }
 }
 
-
 // Function for selecting and verifying Answers
 function selectAnswer(e) {
   const userChoice = e.target.innerText
-  console.log(userChoice)
   if (userChoice === quizQuestions[currentQuestionIndex].correct) {
+    score.innerHTML = "Score: "
+    addPoints()
     currentQuestionIndex++
     nextQuestion()
   } else if (userChoice != quizQuestions[currentQuestionIndex].correct) {
@@ -131,7 +145,6 @@ function selectAnswer(e) {
       currentQuestionIndex++
       nextQuestion()
   }
-  
 }
 
 // Adds class of correct or incorrect to answers
@@ -150,9 +163,21 @@ function clearAnswerStatus(element) {
   element.classList.remove('incorrect')
 }
 
-
-
-
-
-
-
+// Local Storage
+document.getElementById('submit').addEventListener('click', event => {
+  event.preventDefault()
+  const record = {
+    name: document.getElementById('name').value,
+    score: points
+  }
+  scores.push(record)
+  localStorage.setItem('scores', JSON.stringify(scores))
+  document.getElementById('submitScore').classList.add('hide')
+  document.getElementById('displayScores').classList.remove('hide')
+  scores = scores.sort((a, b) => b.score - a.score)
+  scores.forEach(score => {
+    let scoreElem = document.createElement('div')
+    scoreElem.innerHTML = `<h6>Name: ${score.name} | Score: ${score.score}</h6><hr>`
+    document.getElementById('displayScores').append(scoreElem)
+  })
+})
